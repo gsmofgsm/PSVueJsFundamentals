@@ -12,18 +12,18 @@
     </header>
     <img alt="Vue logo" src="./assets/logo.png" />
     <main>
-      <HomePage />
+      <RobotBuilder />
     </main>
   </div>
 </template>
 
 <script>
-import HomePage from "./components/HomePage.vue";
+import RobotBuilder from "./build/RobotBuilder";
 
 export default {
   name: "App",
   components: {
-    HomePage,
+    RobotBuilder,
   },
 };
 </script>
