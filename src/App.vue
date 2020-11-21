@@ -12,19 +12,14 @@
     </header>
     <img alt="Vue logo" src="./assets/logo.png" />
     <main>
-      <RobotBuilder />
+      <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
-import RobotBuilder from "./build/RobotBuilder";
-
 export default {
   name: "App",
-  components: {
-    RobotBuilder,
-  },
 };
 </script>
 
