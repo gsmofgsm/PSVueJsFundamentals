@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+  namespaced: true, // state is always namespaced, so use state.robots, but actions etc must be specified.
   state: {
     cart: [], // default is import for vue to notice later changes
     parts: null,

@@ -64,7 +64,7 @@ import CollapsibleSection from "../shared/CollapsibleSection";
 export default {
   name: "RobotBuilder",
   created() {
-    this.$store.dispatch("getParts"); // use commit to commit mutations and use dispatch to dispatch actions
+    this.$store.dispatch("robots/getParts"); // use commit to commit mutations and use dispatch to dispatch actions
   },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {

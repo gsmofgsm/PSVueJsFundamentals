@@ -1,6 +1,6 @@
 export default {
   created() {
-    this.$store.dispatch("getParts"); // use commit to commit mutations and use dispatch to dispatch actions
+    this.$store.dispatch("robots/getParts"); // use commit to commit mutations and use dispatch to dispatch actions
   },
   computed: {
     parts() {
