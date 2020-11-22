@@ -12,6 +12,7 @@ export default {
   },
   getters: {
     foo(state) {
+      // this is module state, not rootState
       return `users-getter/${state.foo}`;
     },
   },

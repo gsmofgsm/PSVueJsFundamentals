@@ -6,7 +6,7 @@
     <br />
     Root Getter Foo: {{ rootGetterFoo }} <br />
     Robots Getter Foo: {{ robotGetterFoo }} <br />
-    Users Getter Foo: {{ usersGetterFoo }} <br />
+    <!-- Users Getter Foo: {{ usersGetterFoo }} <br /> -->
 
     <header>
       <nav>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -64,15 +64,17 @@ export default {
     // usersFoo() {
     //   return this.$store.state.users.foo;
     // },
-    rootGetterFoo() {
-      return this.$store.getters.foo;
-    },
-    robotGetterFoo() {
-      return this.$store.getters["robots/foo"];
-    },
-    usersGetterFoo() {
-      return this.$store.getters["users/foo"];
-    },
+    ...mapGetters({ rootGetterFoo: "foo" }),
+    // rootGetterFoo() {
+    //   return this.$store.getters.foo;
+    // },
+    ...mapGetters("robots", { robotGetterFoo: "foo" }),
+    // robotGetterFoo() {
+    //   return this.$store.getters["robots/foo"];
+    // },
+    // usersGetterFoo() {
+    //   return this.$store.getters["users/foo"]; // not working, because users module is not namespaced
+    // },
     cart() {
       return this.$store.state.robots.cart;
     },
