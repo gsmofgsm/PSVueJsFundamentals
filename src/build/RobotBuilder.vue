@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import createdHookMixin from "./created-hook-mixin";
 import PartSelector from "./PartSelector";
 import CollapsibleSection from "../shared/CollapsibleSection";
@@ -64,7 +65,7 @@ import CollapsibleSection from "../shared/CollapsibleSection";
 export default {
   name: "RobotBuilder",
   created() {
-    this.$store.dispatch("robots/getParts"); // use commit to commit mutations and use dispatch to dispatch actions
+    this.getParts(); // use commit to commit mutations and use dispatch to dispatch actions
   },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
@@ -103,6 +104,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions("robots", ["getParts", "addRobotToCart"]),
     addToCart() {
       const robot = this.selectedRobot;
       const cost =
@@ -111,9 +113,9 @@ export default {
         robot.torso.cost +
         robot.rightArm.cost +
         robot.base.cost;
-      this.$store
-        .dispatch("robots/addRobotToCart", Object.assign({}, robot, { cost }))
-        .then(this.$router.push("/cart"));
+      this.addRobotToCart(Object.assign({}, robot, { cost })).then(
+        this.$router.push("/cart")
+      );
       // this.cart.push(Object.assign({}, robot, { cost }));
       this.addedToCart = true;
     },
