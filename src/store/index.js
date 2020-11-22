@@ -7,8 +7,16 @@ import usersModule from "./modules/users";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    foo: "root-foo", // root state, which is not in a module. Actually state in a non-namespace module is also root state
+  },
   modules: {
     robots: robotsModule,
     users: usersModule,
+  },
+  getters: {
+    foo(state) {
+      return `root-getter/${state.foo}`;
+    },
   },
 });
