@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div v-if="availableParts" class="content">
     <div class="preview">
       <CollapsibleSection>
         <div class="preview-content">
@@ -57,13 +57,15 @@
 </template>
 
 <script>
-import availableParts from "../data/parts";
 import createdHookMixin from "./created-hook-mixin";
 import PartSelector from "./PartSelector";
 import CollapsibleSection from "../shared/CollapsibleSection";
 
 export default {
   name: "RobotBuilder",
+  created() {
+    this.$store.dispatch("getParts"); // use commit to commit mutations and use dispatch to dispatch actions
+  },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
       next(true);
@@ -77,7 +79,6 @@ export default {
   components: { PartSelector, CollapsibleSection },
   data() {
     return {
-      availableParts,
       cart: [], // initialization in data() function is needed for vue to notice its change elsewhere
       selectedRobot: {
         head: {},
@@ -90,6 +91,9 @@ export default {
   },
   mixins: [createdHookMixin],
   computed: {
+    availableParts() {
+      return this.$store.state.parts;
+    },
     headBorderStyle() {
       return {
         border: this.selectedRobot.head.onSale
